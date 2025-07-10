@@ -5,6 +5,8 @@ using TMPro; // Імпорт TextMeshPro
 
 public class Base_Click_Loop : MonoBehaviour
 {
+    public static Base_Click_Loop Instance; // Сінглтон
+
     // public - Модифікатор доступу. Дає змінній видимість в скриптах
     // та у редакторі Unity.
 
@@ -16,14 +18,17 @@ public class Base_Click_Loop : MonoBehaviour
     // private - Зворотнє до public
 
     // int - Тип даних, що є цілим числом.
-    private int coinsCounter = 0; // Лічильник валюти
+    public int coinsCounter = 0; // Лічильник валюти
+
+    public int coinsPerClick = 1; // Кількість валюти за клік
     public void AddCoin()
     {
         coinsCounter++; // Додає одиницю до лічильника
-        coinsText.text = $"Шекелі: {coinsCounter}"; // Оновлює текст
+        coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
     }
     private void Start()
     {
-        coinsText.text = $"Шекелі: {coinsCounter}"; // Оновлює текст
+        Instance = this; // Прив'язуємо екземпляр до змінної
+        coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
     }
 }
