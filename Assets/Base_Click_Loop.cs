@@ -31,4 +31,8 @@ public class Base_Click_Loop : MonoBehaviour
         Instance = this; // Прив'язуємо екземпляр до змінної
         coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
     }
+    public void UpdateClickText()
+    {
+        coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
+    }
 }
