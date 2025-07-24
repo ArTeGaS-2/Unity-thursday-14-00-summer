@@ -11,22 +11,35 @@ public class Economy : MonoBehaviour
 
     public TextMeshProUGUI baseClickPlusPriceText; // “екст ц≥нника
 
+    private void Start()
+    {
+        UpdatePriceText();
+    }
     public void BuyPlusOneClick()
     {
         // якщо (ц≥наЅазового л≥ку <=(ћенше або дор≥внюЇ) число л≥к≥в)
-        if (baseClickPlusPrice <= Base_Click_Loop.Instance.coinsCounter)
+        if (TakeCurrentPrice() <= Base_Click_Loop.Instance.coinsCounter)
         {
             //  ≥льк≥сть кл≥к≥в
             Base_Click_Loop.Instance.coinsCounter -= // в≥дн€ти
                 // базова÷≥на л≥ку + л≥чильник упленихѕокращень * модиф≥катор÷≥ни
-                baseClickPlusPrice + clickPlusBuyCounter * clickPlusPriceMod;
+                TakeCurrentPrice();
             Base_Click_Loop.Instance.UpdateClickText();
+            Base_Click_Loop.Instance.AddCoinPerClick();
+            clickPlusBuyCounter++;
+            UpdatePriceText();
         }
     }
     private void UpdatePriceText()
     {
         // ќновлюЇмо ц≥ну б≥л€ кнопки
-        baseClickPlusPriceText.text = 
-            (baseClickPlusPrice + clickPlusBuyCounter * clickPlusPriceMod).ToString();
+        baseClickPlusPriceText.text = "÷≥на: " +
+            TakeCurrentPrice().ToString();
+    }
+    private int TakeCurrentPrice()
+    {
+        int currentPrice = baseClickPlusPrice + 
+            clickPlusBuyCounter * clickPlusPriceMod;
+        return currentPrice;
     }
 }

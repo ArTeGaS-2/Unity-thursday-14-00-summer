@@ -23,7 +23,7 @@ public class Base_Click_Loop : MonoBehaviour
     public int coinsPerClick = 1; // Кількість валюти за клік
     public void AddCoin()
     {
-        coinsCounter++; // Додає одиницю до лічильника
+        coinsCounter += coinsPerClick; // Додає одиницю до лічильника
         coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
     }
     private void Start()
@@ -34,5 +34,9 @@ public class Base_Click_Loop : MonoBehaviour
     public void UpdateClickText()
     {
         coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
+    }
+    public void AddCoinPerClick()
+    {
+        coinsPerClick++;
     }
 }
