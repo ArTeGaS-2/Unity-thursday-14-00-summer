@@ -10,10 +10,12 @@ public class Economy : MonoBehaviour
     private int clickPlusBuyCounter = 0; // Кількість купленик покращень кліку
 
     public TextMeshProUGUI baseClickPlusPriceText; // Текст цінника
+    public TextMeshProUGUI clickBuyCounter; // Посилається на лічильник куплених бонусів
 
     private void Start()
     {
         UpdatePriceText();
+        UpdateBuyCounter();
     }
     public void BuyPlusOneClick()
     {
@@ -28,6 +30,7 @@ public class Economy : MonoBehaviour
             Base_Click_Loop.Instance.AddCoinPerClick();
             clickPlusBuyCounter++;
             UpdatePriceText();
+            UpdateBuyCounter();
         }
     }
     private void UpdatePriceText()
@@ -35,6 +38,12 @@ public class Economy : MonoBehaviour
         // Оновлюємо ціну біля кнопки
         baseClickPlusPriceText.text = "Ціна: " +
             TakeCurrentPrice().ToString();
+    }
+    private void UpdateBuyCounter()
+    {
+        clickBuyCounter.text = "Колод за клік: " +
+            Base_Click_Loop.Instance.coinsPerClick;
+
     }
     private int TakeCurrentPrice()
     {

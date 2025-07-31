@@ -21,6 +21,8 @@ public class Base_Click_Loop : MonoBehaviour
     public int coinsCounter = 0; // Лічильник валюти
 
     public int coinsPerClick = 1; // Кількість валюти за клік
+
+    public int coinsPerAutoClick = 0; // Кількість валюти за авто-клік
     public void AddCoin()
     {
         coinsCounter += coinsPerClick; // Додає одиницю до лічильника
