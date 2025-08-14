@@ -28,10 +28,25 @@ public class Base_Click_Loop : MonoBehaviour
         coinsCounter += coinsPerClick; // Додає одиницю до лічильника
         coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
     }
+    private IEnumerator AddAutoCoin()
+    {
+        // Цикл, що постійно повторює блок коду
+        while (true)
+        {
+            // Додає куплену кількість автокліків до валюти 
+            coinsCounter += coinsPerAutoClick;
+            // Очікує зазначену в дужках кількість секунд         
+            yield return new WaitForSeconds(1f);
+            // Оновлює текст лічильника 
+            coinsText.text = $"Колоди: {coinsCounter}";
+        }
+    }
     private void Start()
     {
         Instance = this; // Прив'язуємо екземпляр до змінної
         coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
+   
+        StartCoroutine(AddAutoCoin()); // Запуск корутіни
     }
     public void UpdateClickText()
     {
