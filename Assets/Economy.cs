@@ -45,6 +45,17 @@ public class Economy : MonoBehaviour
             UpdateBuyCounter();
         }
     }
+    public void BuyPlusOneAutoClick()
+    {
+        if (TakeCurrentAutoClickPrice() <= Base_Click_Loop.Instance.coinsCounter)
+        {
+            Base_Click_Loop.Instance.coinsCounter -= TakeCurrentAutoClickPrice();
+            Base_Click_Loop.Instance.UpdateClickText();
+            autoClickPlusBuyCounter++;
+            UpdateAutoPriceText();
+            UpdateAutoBuyCounter();
+        }
+    }
     private void UpdatePriceText()
     {
         // Оновлюємо ціну біля кнопки
@@ -57,6 +68,16 @@ public class Economy : MonoBehaviour
             Base_Click_Loop.Instance.coinsPerClick;
 
     }
+    private void UpdateAutoPriceText()
+    {
+        baseAutoClickPlusPriceText.text = "Ціна: " +
+            TakeCurrentAutoClickPrice().ToString();
+    }
+    private void UpdateAutoBuyCounter()
+    {
+        autoClickBuyCounter.text = "Колод за автоклік: " +
+            Base_Click_Loop.Instance.coinsPerAutoClick;
+    }
     private int TakeCurrentPrice()
     {
         int currentPrice = baseClickPlusPrice + 
@@ -65,6 +86,7 @@ public class Economy : MonoBehaviour
     }
     private int TakeCurrentAutoClickPrice()
     {
+        // Зберігає поточну ціну, рахуючи базову ціну +кількість купівель +модифікатор
         int currentPrice = baseAutoClickPlusPrice +
             autoClickPlusBuyCounter * autoClickPlusPriceMod;
         return currentPrice;
