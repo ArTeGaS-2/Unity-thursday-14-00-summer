@@ -7,6 +7,8 @@ public class Base_Click_Loop : MonoBehaviour
 {
     public static Base_Click_Loop Instance; // Сінглтон
 
+    public IEnumerator autoRoutine; // змінна під роботу автокліку
+
     // public - Модифікатор доступу. Дає змінній видимість в скриптах
     // та у редакторі Unity.
 
@@ -28,7 +30,7 @@ public class Base_Click_Loop : MonoBehaviour
         coinsCounter += coinsPerClick; // Додає одиницю до лічильника
         coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
     }
-    private IEnumerator AddAutoCoin()
+    public IEnumerator AddAutoCoin()
     {
         // Цикл, що постійно повторює блок коду
         while (true)
@@ -46,7 +48,8 @@ public class Base_Click_Loop : MonoBehaviour
         Instance = this; // Прив'язуємо екземпляр до змінної
         coinsText.text = $"Колоди: {coinsCounter}"; // Оновлює текст
    
-        StartCoroutine(AddAutoCoin()); // Запуск корутіни
+        autoRoutine = AddAutoCoin();
+        StartCoroutine(autoRoutine); // Запуск корутіни
     }
     public void UpdateClickText()
     {

@@ -21,8 +21,12 @@ public class Economy : MonoBehaviour
     public TextMeshProUGUI autoClickBuyCounter;
     private void Start()
     {
+        // Оновлення тексту лічильника і ціни купленого кліку
         UpdatePriceText();
         UpdateBuyCounter();
+        // Оновлення тексту лічильника і ціни купленого авто-кліку
+        UpdateAutoPriceText();
+        UpdateAutoBuyCounter();
     }
     public void BuyPlusOneClick()
     {
@@ -75,6 +79,7 @@ public class Economy : MonoBehaviour
     }
     private void UpdateAutoBuyCounter()
     {
+
         autoClickBuyCounter.text = "Колод за автоклік: " +
             Base_Click_Loop.Instance.coinsPerAutoClick;
     }
